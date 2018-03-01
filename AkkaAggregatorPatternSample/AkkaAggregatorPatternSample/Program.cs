@@ -1,4 +1,5 @@
 ﻿using Akka.Actor;
+using AkkaAggregatorPattern.Actors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,14 +16,17 @@ namespace AkkaAggregatorPatternSample
         {
             MyActorSystem = ActorSystem.Create("AggregatorActorSystem");
 
-            // make our first actors!
-            IActorRef consoleWriterActor = MyActorSystem.ActorOf(Props.Create(() => new ConsoleWriterActor()), "consoleWriterActor");
-            IActorRef consoleReaderActor = MyActorSystem.ActorOf(Props.Create(() => new ConsoleReaderActor(consoleWriterActor)), "consoleReaderActor");
+            var fundActorProps = Props.Create(() => new FundActor());
+            var consoleWriterActorProps = Props.Create(() => new ConsoleWriterActor());
 
-            // tell console reader to begin
-            consoleReaderActor.Tell(ConsoleReaderActor.StartCommand);
+            IActorRef fundActor = MyActorSystem.ActorOf(fundActorProps, "fundActor");
+            IActorRef consoleWriterActor = MyActorSystem.ActorOf(consoleWriterActorProps, "consoleWriterActor");
 
-            // blocks the main thread from exiting until the actor system is shut down
+            Console.WriteLine("Fund Id : ");
+            int fundId = Convert.ToInt32(Console.ReadLine());
+
+            fundActor.Tell(fundId);
+
             MyActorSystem.WhenTerminated.Wait();
         }
     }

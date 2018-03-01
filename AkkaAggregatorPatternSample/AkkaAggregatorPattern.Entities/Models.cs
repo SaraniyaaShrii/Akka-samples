@@ -26,10 +26,41 @@ namespace AkkaAggregatorPattern.Entities
 
     public class AttributionData
     {
+        public int FundId { get; set; }
+
+        public int SecurityId { get; set; }
+
         public DateTime ContextDate { get; set; }
 
         public double Stat1 { get; set; }
 
         public double Stat2 { get; set; }
     } 
+
+    public class DataPerDateReqMsg
+    {
+        public int FundId { get; set; }
+
+        public int SecurityId { get; set; }
+
+        public DateTime ContextDate { get; set; }
+
+        public Dictionary<string, object> Extras { get; set; }
+    }
+
+    public class DataPerSecurityReqMsg
+    {
+        public int FundId { get; set; }
+
+        public int SecurityId { get; set; }
+
+        public Dictionary<string, object> Extras { get; set; }
+    }
+
+    public class DataPerFundReqMsg
+    {
+        public int FundId { get; set; }
+
+        public Dictionary<string, object> Extras { get; set; }
+    }
 }

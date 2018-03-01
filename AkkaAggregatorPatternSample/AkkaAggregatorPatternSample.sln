@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AkkaAggregatorPatternSample", "AkkaAggregatorPatternSample\AkkaAggregatorPatternSample.csproj", "{407A5F2E-598B-41F3-9646-F42FDCE8D8DB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AkkaAggregatorPattern.Client", "AkkaAggregatorPatternSample\AkkaAggregatorPattern.Client.csproj", "{407A5F2E-598B-41F3-9646-F42FDCE8D8DB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AkkaAggregatorPattern.Entities", "AkkaAggregatorPattern.Entities\AkkaAggregatorPattern.Entities.csproj", "{9008E107-62C9-434E-A736-95DF48BA5D54}"
 EndProject
@@ -36,5 +36,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2761BCF5-9CED-4639-91E4-80AE14868CDF}
 	EndGlobalSection
 EndGlobal

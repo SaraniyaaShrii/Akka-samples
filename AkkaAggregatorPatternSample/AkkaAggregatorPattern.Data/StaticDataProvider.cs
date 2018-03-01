@@ -61,14 +61,19 @@ namespace AkkaAggregatorPattern.Data
 
             foreach (var date in Dates)
             {
-                var data = new AttributionData();
-                data.ContextDate = date;
-                data.Stat1 = GetRandomNumber(randomInstance, 1000, 10000);
-                data.Stat1 = GetRandomNumber(randomInstance, 0, 100);
-
-                dataForDates.Add(date, data);
+                GetAttributionData(dataForDates, randomInstance, date);
             }
             return dataForDates;
+        }
+
+        private static void GetAttributionData(Dictionary<DateTime, AttributionData> dataForDates, Random randomInstance, DateTime date)
+        {
+            var data = new AttributionData();
+            data.ContextDate = date;
+            data.Stat1 = GetRandomNumber(randomInstance, 1000, 10000);
+            data.Stat1 = GetRandomNumber(randomInstance, 0, 100);
+
+            dataForDates.Add(date, data);
         }
 
         public static int GetRandomNumber(Random instance, int minValue, int maxValue)
