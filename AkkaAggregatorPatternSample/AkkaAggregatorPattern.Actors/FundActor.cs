@@ -11,28 +11,105 @@ namespace AkkaAggregatorPattern.Actors
 {
     public class FundActor : ReceiveActor
     {
+        private IActorRef Client;
+        private FundData FundAttribData;
+        private double ContextTimeout = 30;
+        private string consoleWriterActorKey = "consoleWriterActor";
+
         public FundActor()
         {
-            Receive<DataPerFundReqMsg>(msg => GetFundData(msg));
-            Receive<SecurityData>(msg => HandleFundData(msg));
+            Context.SetReceiveTimeout(TimeSpan.FromSeconds(ContextTimeout));
+            //Receive<DataPerFundReqMsg>(ProcessFundAttributionData());
+            //Receive<DataPerFundReqMsg>(msg => ProcessFundAttributionData(msg));
+
+            //Become(AggregateSecurities);
+
+            Receive<DataPerFundReqMsg>(msg => ProcessFundAttributionData(msg));
+
+            Receive<SecurityData>(msg =>
+            {
+                FundAttribData.Securities.Add(msg);
+            });
+
+            Receive<ReceiveTimeout>(msg =>
+            {
+                if (Client != null)
+                {
+                    Client.Tell(FundAttribData);
+                }
+
+                Context.Stop(Self);
+            });
         }
 
-        private void GetFundData(DataPerFundReqMsg msg)
+        //private Action<DataPerFundReqMsg> ProcessFundAttributionData()
+        //{
+        //    return msg =>
+        //    {
+        //        //Client = Sender;
+        //        if (msg.Extras.ContainsKey(consoleWriterActorKey))
+        //        {
+        //            Client = msg.Extras[consoleWriterActorKey] as IActorRef;
+        //        }
+        //        CreateGlobalFundData(msg);
+        //        ProcessSecuritiesData(msg);
+        //    };
+        //}
+
+        private void ProcessFundAttributionData<T>(T message)
+        {
+            //Client = Sender;
+            var msg = message as DataPerFundReqMsg;
+            if (msg.Extras.ContainsKey(consoleWriterActorKey))
+            {
+                Client = msg.Extras[consoleWriterActorKey] as IActorRef;
+            }
+            CreateGlobalFundData(msg);
+            ProcessSecuritiesData(msg);
+        }
+
+        private void AggregateSecurities()
+        {
+            Receive<DataPerFundReqMsg>(msg => ProcessFundAttributionData(msg));
+
+            Receive<SecurityData>(msg =>
+            {
+                FundAttribData.Securities.Add(msg);
+            });
+
+            Receive<ReceiveTimeout>(msg =>
+            {
+                if (Client != null)
+                {
+                    Client.Tell(FundAttribData);
+                }
+
+                Context.Stop(Self);
+            });
+
+        }
+
+        private void ProcessSecuritiesData(DataPerFundReqMsg msg)
         {
             HashSet<int> securityIds = GetSecurityIds(msg.FundId);
 
             foreach (var securityId in securityIds)
             {
-                var securityActorProps = Props.Create(() => new ConsoleWriterActor());
-                IActorRef securityActor = Context.ActorOf(securityActorProps, "securityActor");
+                var securityActorProps = Props.Create(() => new SecurityActor());
+                IActorRef securityActor = Context.ActorOf(securityActorProps);
                 var dataPerSecurityReqMsg = GetRequestMsg(msg, securityId);
                 securityActor.Tell(dataPerSecurityReqMsg);
-
             }
         }
 
-        private void HandleFundData(SecurityData securityData)
+        private void CreateGlobalFundData(DataPerFundReqMsg msg)
         {
+            FundAttribData = new FundData()
+            {
+                Id = msg.FundId,
+                Name = string.Format("Fund_{0}", msg.FundId),
+                Securities = new List<SecurityData>()
+            };
         }
 
         private static DataPerSecurityReqMsg GetRequestMsg(DataPerFundReqMsg msg, int securityId)
@@ -47,7 +124,7 @@ namespace AkkaAggregatorPattern.Actors
         public HashSet<int> GetSecurityIds(int fundId)
         {
             int securityCount = AttributionDataProvider.GetFundSecurityCount(fundId);
-            HashSet<int> securityIds = AttributionDataProvider.GetRandomNumbers(new Random(), 1, securityCount, securityCount);
+            HashSet<int> securityIds = AttributionDataProvider.GetRandomNumbers(new Random(), 1, 100, securityCount);
             return securityIds;
         }
 

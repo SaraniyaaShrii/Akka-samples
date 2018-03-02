@@ -13,7 +13,7 @@ namespace AkkaAggregatorPattern.Actors
     {
         public ConsoleWriterActor()
         {
-            ReceiveAny(msg => WriteToConsole(msg));
+            Receive<FundData>(msg => WriteToConsole(msg));
         }
 
         private void WriteToConsole<T>(T msg)

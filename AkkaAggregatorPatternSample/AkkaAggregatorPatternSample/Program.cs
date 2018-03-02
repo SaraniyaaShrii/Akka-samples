@@ -1,5 +1,6 @@
 ﻿using Akka.Actor;
 using AkkaAggregatorPattern.Actors;
+using AkkaAggregatorPattern.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,12 +23,36 @@ namespace AkkaAggregatorPatternSample
             IActorRef fundActor = MyActorSystem.ActorOf(fundActorProps, "fundActor");
             IActorRef consoleWriterActor = MyActorSystem.ActorOf(consoleWriterActorProps, "consoleWriterActor");
 
-            Console.WriteLine("Fund Id : ");
-            int fundId = Convert.ToInt32(Console.ReadLine());
+            //Console.WriteLine("Fund Id : ");
+            int fundId = 1;// Convert.ToInt32(Console.ReadLine());
 
-            fundActor.Tell(fundId);
+            DataPerFundReqMsg msg = GetMessage(consoleWriterActor, fundId);
+
+            fundActor.Tell(msg);
 
             MyActorSystem.WhenTerminated.Wait();
+        }
+
+        private static DataPerFundReqMsg GetMessage(IActorRef consoleWriterActor, int fundId)
+        {
+            DataPerFundReqMsg msg = new DataPerFundReqMsg()
+            {
+                FundId = fundId,
+                Extras = new Dictionary<string, object>()
+                {
+                    { "consoleWriterActor", consoleWriterActor }
+                }
+            };
+
+            return msg;
+        }
+
+        public void Handler(IActorRef consoleWriterActor)
+        {
+            //Receive<FundData>(msg => 
+            //{
+            //    consoleWriterActor.Tell("Write");
+            //});
         }
     }
 }
