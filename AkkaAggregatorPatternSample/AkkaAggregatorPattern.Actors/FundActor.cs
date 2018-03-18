@@ -42,27 +42,16 @@ namespace AkkaAggregatorPattern.Actors
             });
         }
 
-        //private Action<DataPerFundReqMsg> ProcessFundAttributionData()
-        //{
-        //    return msg =>
-        //    {
-        //        //Client = Sender;
-        //        if (msg.Extras.ContainsKey(consoleWriterActorKey))
-        //        {
-        //            Client = msg.Extras[consoleWriterActorKey] as IActorRef;
-        //        }
-        //        CreateGlobalFundData(msg);
-        //        ProcessSecuritiesData(msg);
-        //    };
-        //}
-
         private void ProcessFundAttributionData<T>(T message)
         {
-            //Client = Sender;
             var msg = message as DataPerFundReqMsg;
             if (msg.Extras.ContainsKey(consoleWriterActorKey))
             {
                 Client = msg.Extras[consoleWriterActorKey] as IActorRef;
+            }
+            else
+            {
+                Client = Sender;
             }
             CreateGlobalFundData(msg);
             ProcessSecuritiesData(msg);
