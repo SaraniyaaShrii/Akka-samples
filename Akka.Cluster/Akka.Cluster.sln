@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Akka.Cluster", "Akka.Cluster\Akka.Cluster.csproj", "{12D97346-B64D-46E3-9969-C39CEDEDAFDC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Akka.Cluster.Lighthouse", "Akka.Cluster.Lighthouse\Akka.Cluster.Lighthouse.csproj", "{5123F20B-ADBF-41A9-97D6-9D0C4F074BDF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Akka.Cluster.Sample", "Akka.Cluster.Sample\Akka.Cluster.Sample.csproj", "{BC6BEC33-13F7-426C-BF0E-438617D4E767}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Akka.Cluster.WorkerNode", "Akka.Cluster.Node\Akka.Cluster.WorkerNode.csproj", "{87B2FA1E-8653-43D2-847C-E86A05F462C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Akka.Cluster.API", "Akka.Cluster.Client\Akka.Cluster.API.csproj", "{5FF07A62-56FB-4296-8B34-59CA2B568D04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Attribution.Cluster.Client", "Attribution.Cluster.Client\Attribution.Cluster.Client.csproj", "{60486526-B656-4563-95D7-CCA0FE34F0D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +17,22 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{12D97346-B64D-46E3-9969-C39CEDEDAFDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{12D97346-B64D-46E3-9969-C39CEDEDAFDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{12D97346-B64D-46E3-9969-C39CEDEDAFDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{12D97346-B64D-46E3-9969-C39CEDEDAFDC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BC6BEC33-13F7-426C-BF0E-438617D4E767}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BC6BEC33-13F7-426C-BF0E-438617D4E767}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BC6BEC33-13F7-426C-BF0E-438617D4E767}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BC6BEC33-13F7-426C-BF0E-438617D4E767}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5123F20B-ADBF-41A9-97D6-9D0C4F074BDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5123F20B-ADBF-41A9-97D6-9D0C4F074BDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5123F20B-ADBF-41A9-97D6-9D0C4F074BDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5123F20B-ADBF-41A9-97D6-9D0C4F074BDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87B2FA1E-8653-43D2-847C-E86A05F462C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87B2FA1E-8653-43D2-847C-E86A05F462C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87B2FA1E-8653-43D2-847C-E86A05F462C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87B2FA1E-8653-43D2-847C-E86A05F462C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FF07A62-56FB-4296-8B34-59CA2B568D04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FF07A62-56FB-4296-8B34-59CA2B568D04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FF07A62-56FB-4296-8B34-59CA2B568D04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FF07A62-56FB-4296-8B34-59CA2B568D04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60486526-B656-4563-95D7-CCA0FE34F0D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60486526-B656-4563-95D7-CCA0FE34F0D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60486526-B656-4563-95D7-CCA0FE34F0D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60486526-B656-4563-95D7-CCA0FE34F0D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

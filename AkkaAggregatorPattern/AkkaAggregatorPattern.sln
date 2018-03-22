@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AkkaAggregatorPattern.Actor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AkkaAggregatorPattern.Worker", "AkkaAggregatorPattern.Worker\AkkaAggregatorPattern.Worker.csproj", "{407A5F2E-598B-41F3-9646-F42FDCE8D8DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Akka.Cluster.RequestHandler", "..\Akka.Cluster.RequestHandler\Akka.Cluster.RequestHandler\Akka.Cluster.RequestHandler.csproj", "{87B2FA1E-8653-43D2-847C-E86A05F462C3}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,10 +33,6 @@ Global
 		{407A5F2E-598B-41F3-9646-F42FDCE8D8DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{407A5F2E-598B-41F3-9646-F42FDCE8D8DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{407A5F2E-598B-41F3-9646-F42FDCE8D8DB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{87B2FA1E-8653-43D2-847C-E86A05F462C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{87B2FA1E-8653-43D2-847C-E86A05F462C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{87B2FA1E-8653-43D2-847C-E86A05F462C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{87B2FA1E-8653-43D2-847C-E86A05F462C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
