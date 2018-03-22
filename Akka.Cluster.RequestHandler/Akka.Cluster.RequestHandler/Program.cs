@@ -17,21 +17,20 @@ namespace Akka.Cluster.RequestHandler
 
         static void Main(string[] args)
         {
-            var configuration = GetAkkaConfig("akka");
-            //configuration = configuration.WithFallback(GetAkkaConfig("akka/akka.logging"))
-            //  .WithFallback(GetAkkaConfig("akka/akka.remote"))
-            //  .WithFallback(GetAkkaConfig("akka/akka.cluster"));
+            var configuration = GetAkkaConfig();
 
             CreateActorSystem(configuration);
 
-            var fundActorProps = Props.Create(() => new FundActor());
+            //ActorSystem.WhenTerminated.Wait();
 
-            IActorRef fundActor = ActorSystem.ActorOf(fundActorProps, "fundActor");
+            Console.WriteLine("Finished");
+            Console.ReadLine();
 
         }
 
-        private static Config GetAkkaConfig(string sectionName)
+        private static Config GetAkkaConfig()
         {
+            string sectionName = "akka";
             return ((AkkaConfigurationSection)ConfigurationManager.GetSection(sectionName)).AkkaConfig;
         }
 
@@ -40,5 +39,6 @@ namespace Akka.Cluster.RequestHandler
             string actorSystemName = ConfigurationManager.AppSettings[Constants.ConfigKeys.ActorSystemName];
             ActorSystem = ActorSystem.Create(actorSystemName, configuration);
         }
+
     }
 }

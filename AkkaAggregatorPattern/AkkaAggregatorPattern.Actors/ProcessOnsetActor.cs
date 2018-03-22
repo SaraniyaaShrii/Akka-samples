@@ -15,7 +15,7 @@ namespace AkkaAggregatorPattern.Actors
         {
             Receive<AttributionRequestMessage>(msg => ProcessRequest(msg));
 
-            Receive<FundData>(msg => );
+            //Receive<FundData>(msg => );
         }
 
         public void ProcessRequest(AttributionRequestMessage requestMsg)

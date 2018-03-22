@@ -21,7 +21,7 @@ namespace AkkaAggregatorPattern.Actors
             var processOnsetActorProps = Props.Create(() => new ProcessOnsetActor());
             IActorRef processOnsetActor = Context.ActorOf(processOnsetActorProps.WithRouter(FromConfig.Instance), "ProcessOnsetActor");
 
-            processOnsetActor.ActorOf(processOnsetActorProps.WithRouter(FromConfig.Instance), "remoteactor1");
+            //processOnsetActor.ActorOf(processOnsetActorProps.WithRouter(FromConfig.Instance), "remoteactor1");
         }
     }
 }
